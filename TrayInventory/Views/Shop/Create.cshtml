@@ -1,0 +1,85 @@
+﻿@model TrayInventoryApp.Models.Shop
+
+@{
+    ViewData["Title"] = "Create a New Shop";
+}
+
+<div class="container">
+    <!-- Page Title -->
+    <h2 class="text-center font-weight-bold" style="font-size: 36px; margin-bottom: 30px;">Create a New Shop</h2>
+
+    <!-- Form -->
+    <form method="post" asp-action="Create" class="form-container">
+        @Html.AntiForgeryToken() <!-- Anti-forgery token -->
+        <!-- Shop Name Field -->
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="ShopName" class="font-weight-bold" style="font-size: 20px;">Shop Name</label>
+            <input type="text"
+                   id="ShopName"
+                   name="ShopName"
+                   class="form-control"
+                   required
+                   style="font-size: 18px; padding: 12px;"
+                   placeholder="Enter shop name" />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary btn-lg" style="font-size: 22px; padding: 10px 20px;">Submit</button>
+        </div>
+    </form>
+
+    <!-- Back Link -->
+    <div class="text-center" style="margin-top: 30px;">
+        <a href="@Url.Action("Index", "Shop")" class="btn btn-secondary" style="font-size: 18px; padding: 10px 20px;">Back to Shop List</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        background-color: #ffffff; /* White container */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto; /* Centered with spacing around */
+    }
+
+    .form-container .form-group {
+        margin-bottom: 25px;
+    }
+
+    .btn-primary {
+        font-weight: bold;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .btn-secondary {
+        font-weight: bold;
+        background-color: #6c757d;
+        border-color: #6c757d;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+            text-decoration: none;
+        }
+
+    h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+</style>

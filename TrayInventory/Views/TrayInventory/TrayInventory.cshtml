@@ -1,0 +1,123 @@
+﻿@model TrayInventoryApp.Models.TrayInventorys
+
+<div class="container">
+    <!-- Tray Inventory Heading -->
+    <h2 class="text-center font-weight-bold" style="font-size: 36px;">Tray Inventory</h2>
+
+    <!-- Display Tray Counts -->
+    <div class="text-center mb-5">
+        <p class="h4" style="font-size: 24px;">Trays Received Today: @(Model?.TraysReceived ?? 0)</p>
+        <p class="h4" style="font-size: 24px;">Trays Issued: @(Model?.TraysIssued ?? 0)</p>
+    </div>
+
+    <!-- Add Trays Section -->
+    <h3 class="font-weight-bold" style="font-size: 28px; margin-bottom: 30px;">Add Trays</h3>
+
+    <!-- Display validation errors -->
+    @if (ViewData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" style="font-size: 18px; padding: 20px;">
+            @ViewData["ErrorMessage"]
+        </div>
+    }
+
+    <!-- Display success message -->
+    @if (ViewData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" style="font-size: 18px; padding: 20px;">
+            @ViewData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Add Tray Inventory Form -->
+    <form action="/TrayInventory/AddTrayInventory" method="post">
+        @Html.AntiForgeryToken() <!-- Anti-forgery token -->
+
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="traysReceived" style="font-size: 20px; font-weight: bold;">Number of Trays Received</label>
+            <input type="number" id="traysReceived" name="traysReceived" required class="form-control" style="font-size: 18px; padding: 10px;" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" style="font-size: 20px; padding: 15px;">Add Inventory</button>
+    </form>
+
+    <!-- Reset Button -->
+    <form action="/TrayInventory/ResetTrayInventory" method="post" style="margin-top: 30px;">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger w-100" style="font-size: 20px; padding: 15px;">Reset Inventory</button>
+    </form>
+
+    <!-- Quick Links Section -->
+    <h3 class="font-weight-bold mt-5" style="font-size: 28px; margin-bottom: 20px;">Quick Links</h3>
+    <div class="text-center">
+        <button class="btn btn-secondary mx-3" onclick="window.location.href='https://localhost:7213/dailyrate/index'" style="font-size: 18px; padding: 12px 30px;">Daily Rate</button>
+        <button class="btn btn-secondary mx-3" onclick="window.location.href='https://localhost:7213/costcalculation/daybydaycost'" style="font-size: 18px; padding: 12px 30px;">Day by Day Cost Calculation</button>
+        <button class="btn btn-secondary mx-3" onclick="window.location.href='https://localhost:7213/Shop/Index'" style="font-size: 18px; padding: 12px 30px;">Shop</button>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f4f6f9; /* Light background */
+        font-family: Arial, sans-serif;
+        padding-top: 30px;
+    }
+
+    .container {
+        background-color: #ffffff; /* White background for content */
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .form-group label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-weight: bold;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        font-weight: bold;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        font-weight: bold;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+    .alert {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .form-control {
+        font-size: 18px;
+        padding: 10px;
+    }
+</style>

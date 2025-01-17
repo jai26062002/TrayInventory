@@ -1,0 +1,81 @@
+﻿@model TrayInventoryApp.Models.Shop
+
+@{
+    ViewData["Title"] = "Add Entry for Shop";
+}
+
+<div class="container">
+    <!-- Page Title -->
+    <h2 class="text-center font-weight-bold" style="font-size: 36px; margin-bottom: 40px;">Add Entry for Shop: <span style="color: #007bff;">@Model.ShopName</span></h2>
+
+    <!-- Form -->
+    <form method="post" action="/Shop/AddTodayEntry" class="form-container">
+        @Html.AntiForgeryToken()
+
+        <!-- Hidden Field to Pass ShopID -->
+        <input type="hidden" name="shopId" value="@Model.ShopID" />
+
+        <!-- Tray Count Field -->
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="trayCount" class="font-weight-bold" style="font-size: 20px;">Tray Count</label>
+            <input type="number"
+                   class="form-control"
+                   id="trayCount"
+                   name="trayCount"
+                   required
+                   style="font-size: 18px; padding: 12px;" />
+        </div>
+
+        <!-- Amount Received Field -->
+        <div class="form-group" style="margin-bottom: 30px;">
+            <label for="amountReceived" class="font-weight-bold" style="font-size: 20px;">Amount Received</label>
+            <input type="number"
+                   class="form-control"
+                   id="amountReceived"
+                   name="amountReceived"
+                   required
+                   style="font-size: 18px; padding: 12px;" />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary btn-lg" style="font-size: 22px; padding: 10px 20px;">Submit</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        background-color: #ffffff; /* White container */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto; /* Centered with spacing around */
+    }
+
+    .form-container .form-group {
+        margin-bottom: 25px;
+    }
+
+    .btn-primary {
+        font-weight: bold;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+</style>

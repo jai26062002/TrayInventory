@@ -1,0 +1,125 @@
+﻿@model TrayInventoryApp.Models.ShopDetailsViewModel
+
+@{
+    ViewData["Title"] = "Shop Details";
+}
+
+<div class="container-fluid">
+    <!-- Title -->
+    <h2 class="text-center font-weight-bold" style="font-size: 36px; margin-bottom: 30px;">
+        Details for @Model.Shop.ShopName
+    </h2>
+
+    <!-- Transaction History Section -->
+    <div class="transaction-history">
+        <h3 class="font-weight-bold" style="font-size: 28px; margin-bottom: 20px;">Transaction History</h3>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr style="font-size: 18px;">
+                    <th>Date</th>
+                    <th>Tray Count</th>
+                    <th>Cost</th>
+                    <th>Amount Received</th>
+                    <th>Pending Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Transaction != null && Model.Transaction.Any())
+                {
+                    @foreach (var transaction in Model.Transaction)
+                    {
+                        <tr style="font-size: 16px;">
+                            <td>@transaction.Date.ToString("MM/dd/yyyy")</td>
+                            <td>@transaction.TrayCount</td>
+                            <td>@transaction.Cost.ToString("C")</td>
+                            <td>@transaction.AmountReceived.ToString("C")</td>
+                            <td>@transaction.PendingAmount.ToString("C")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center" style="font-size: 18px; color: #666;">
+                            No transactions available for this shop.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back to Shop List Button -->
+    <div class="text-center" style="margin-top: 30px;">
+        <a href="@Url.Action("Index", "Shop")" class="btn btn-secondary btn-lg" style="font-size: 20px; padding: 10px 30px;">
+            Back to Shop List
+        </a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container-fluid {
+        max-width: 100%;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 50px auto;
+    }
+
+    .table {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 16px;
+        }
+
+    .btn-secondary {
+        font-weight: bold;
+        background-color: #6c757d;
+        border-color: #6c757d;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+    .transaction-history {
+        margin-top: 30px;
+    }
+
+   
+    .container-fluid {
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .table th, .table td {
+        font-size: 14px; /* Smaller font for better readability */
+    }
+
+    .btn-lg {
+        font-size: 18px;
+        padding: 8px 20px; /* Adjusted button size */
+    }
+</style>
